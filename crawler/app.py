@@ -81,6 +81,13 @@ def main():
                 
                 st.markdown("</div>", unsafe_allow_html=True)
                 st.markdown("---")
-
+try:
+    recipe = backend.scrape_recipe(new_url)
+    if recipe:
+        st.success(f"تم استخراج: {recipe['title']}")
+    else:
+        st.error("فشل في استخراج الوصفة. قد يكون الهيكل مختلفاً")
+except Exception as e:
+    st.error(f"حدث خطأ: {str(e)}")
 if __name__ == "__main__":
     main()
